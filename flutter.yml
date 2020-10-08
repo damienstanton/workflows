@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Fetch Packages 
+      uses: steebchen/flutter@v1.1.0
+      with:
+        args: pub get
+
+    - name: Run Tests
+      uses: steebchen/flutter@v1.1.0
+      with:
+        args: test

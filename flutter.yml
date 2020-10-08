@@ -5,19 +5,17 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main, dev ]
-
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-
-    - name: Fetch Packages 
-      uses: steebchen/flutter@v1.1.0
+    - name: Fetch Packages
+      uses: geowatson/flutter-latest@1.0.0
       with:
         args: pub get
 
     - name: Run Tests
-      uses: steebchen/flutter@v1.1.0
+      uses: geowatson/flutter-latest@1.0.0
       with:
         args: test
